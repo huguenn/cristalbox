@@ -30,6 +30,8 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $name = strip_tags(trim($_POST["name"]));
+  $surname = strip_tags(trim($_POST["surname"]));
+  $phone = strip_tags(trim($_POST["phone"]));
   $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
   $message = strip_tags(trim($_POST["message"]));
 
@@ -43,12 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $to = "info@cristalbox.com.ar"; 
 
   // Set email subject
-  $subject = "Nuevo mensaje";
+  $subject = "Nuevo Contacto Web";
 
   // Build the email content (plain text)
-  $email_content = "Name: $name\n";
+  $email_content = "Nombre: $name\n";
+  $email_content .= "Apellido: $surname\n\n";
   $email_content .= "Email: $email\n\n";
-  $email_content .= "Message:\n$message\n";
+  $email_content .= "Teléfono: $phone\n\n";
+  $email_content .= "Mensaje:\n$message\n";
 
   // Build email headers
   $headers = "From: $name <$email>\r\n";
